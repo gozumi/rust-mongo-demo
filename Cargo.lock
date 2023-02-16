@@ -618,6 +618,7 @@ dependencies = [
 name = "mongo-demo"
 version = "0.1.0"
 dependencies = [
+ "bson",
  "chrono",
  "mongodb",
  "serde",

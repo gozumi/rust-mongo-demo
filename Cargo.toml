@@ -10,3 +10,4 @@ mongodb = "2.3.1"
 tokio = "1.25.0"
 chrono = "0.4.23" # Used for setting DateTimes
 serde = "1.0.152" # Used in the Map Data into Structs section
+bson = "2.5.0"
