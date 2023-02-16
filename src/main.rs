@@ -32,20 +32,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let now = Utc::now();
     let new_data = doc! {
-        "something": "cold".to_string(),
-        "time_stamp": now.to_rfc3339()
+        "something": "warm".to_string(),
+        "time_stamp": now.to_rfc3339(),
+        "foo": "bar",
+        "baz": "boo"
     };
      
     let insert_result = demo_data_collection.insert_one(new_data, None).await;
     println!("New document ID: {}", insert_result.unwrap().inserted_id);
 
-    let db_item = match demo_data_collection.find_one(doc! {"something": "hot"}, None).await {
-        Ok(item_option) => match item_option {
-            Some(item) => item,
-            None => panic!("ahhh!"),
-        },
-        Err(error) => panic!("{}", error),
-    };
+    let db_item = demo_data_collection.find(doc! {"foo": "bar"}, None).await?;
 
     println!("Found document is: {:?}", db_item); 
 
